@@ -1,6 +1,9 @@
 package org.hei.carte;
 
 
+import org.hei.carte.carte.Lieu;
+import org.hei.carte.carte.Rue;
+
 import java.util.List;
 
 public class Main {

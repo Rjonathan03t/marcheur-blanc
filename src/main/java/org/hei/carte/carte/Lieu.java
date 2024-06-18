@@ -1,4 +1,4 @@
-package org.hei.carte;
+package org.hei.carte.carte;
 
 import java.util.ArrayList;
 import java.util.List;

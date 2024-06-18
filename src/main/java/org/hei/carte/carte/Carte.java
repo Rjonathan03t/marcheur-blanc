@@ -1,12 +1,7 @@
 package org.hei.carte.carte;
 
-import org.hei.carte.Lieu;
-import org.hei.carte.Rue;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Carte {
     private List<Lieu> lieux = new ArrayList<>();

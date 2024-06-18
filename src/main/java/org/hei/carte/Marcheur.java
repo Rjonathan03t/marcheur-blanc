@@ -1,6 +1,7 @@
 package org.hei.carte;
-import org.hei.carte.Lieu;
-import org.hei.carte.Rue;
+import org.hei.carte.carte.Lieu;
+import org.hei.carte.carte.Rue;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

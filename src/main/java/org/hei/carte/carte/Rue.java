@@ -1,4 +1,6 @@
-package org.hei.carte;
+package org.hei.carte.carte;
+
+import org.hei.carte.carte.Lieu;
 
 public class Rue {
     private String nom;
