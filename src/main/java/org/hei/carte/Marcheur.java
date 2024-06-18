@@ -1,42 +1,45 @@
 package org.hei.carte;
-
+import org.hei.carte.Lieu;
+import org.hei.carte.Rue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Marcheur {
-    private String nom;
-    private Rue rue;
-    private String lieuDepart;
-    private Carte carte;
+    private Lieu lieuActuel;
+    private List<Lieu> parcours = new ArrayList<>();
+    private Random rand = new Random();
 
-
-    public Marcheur( String nom, Rue rue,String lieuDepart,Carte carte) {
-        this.nom = nom;
-        this.rue = rue;
-        this.lieuDepart = lieuDepart;
-        this.carte = carte;
+    public Marcheur(Lieu lieuInitial) {
+        this.lieuActuel = lieuInitial;
+        this.parcours.add(lieuInitial);
     }
 
-    public List<Rue> marcherAleatoirement(Lieu depart, Lieu arrive) {
-        List<Rue> trajet = new ArrayList<>();
-        List<Lieu> visite = new ArrayList<>();
-        Random rand = new Random();
-        trajet.add(this.carte.getRueParLieu(depart));
-        visite.add(depart);
+    public List<Lieu> marcherAleatoirement(Lieu destination) {
+        while (!lieuActuel.equals(destination)) {
+            List<Rue> rues = lieuActuel.getRues();
+            List<Rue> ruesDisponibles = new ArrayList<>();
 
-        while (!arrive.equals(depart)) {
-            int indexRueAleatoire = rand.nextInt(this.carte.getNombreDeRues());
-            Rue rueChoisie = this.carte.getRue(indexRueAleatoire);
-
-            Lieu prochainLieu = rueChoisie.getLieuArrive();
-            if (!visite.contains(prochainLieu)) {
-                trajet.add(rueChoisie);
-                visite.add(prochainLieu);
-                depart = prochainLieu;
+            for (Rue rue : rues) {
+                Lieu prochainLieu = rue.getLieuArrive();
+                if (!parcours.contains(prochainLieu) || prochainLieu.equals(destination)) {
+                    ruesDisponibles.add(rue);
+                }
+            }
+            if (!ruesDisponibles.isEmpty()) {
+                Rue rueChoisie = ruesDisponibles.get(rand.nextInt(ruesDisponibles.size()));
+                Lieu prochainLieu = rueChoisie.getLieuArrive();
+                lieuActuel = prochainLieu;
+                parcours.add(prochainLieu);
+            } else {
+                parcours.remove(lieuActuel);
+                lieuActuel = parcours.get(parcours.size() - 1);
             }
         }
-        System.out.println(trajet);
-        return trajet;
+        return parcours;
+    }
+
+    public List<Lieu> getParcours() {
+        return parcours;
     }
 }

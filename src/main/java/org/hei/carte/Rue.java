@@ -25,10 +25,6 @@ public class Rue {
 
     @Override
     public String toString() {
-        return "Rue{" +
-                "nom='" + nom + '\'' +
-                ", lieuDepart=" + lieuDepart +
-                ", lieuArrive=" + lieuArrive +
-                '}';
+        return nom;
     }
 }
